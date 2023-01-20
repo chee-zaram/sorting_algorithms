@@ -26,7 +26,7 @@ void quick_sort(int *array, size_t size)
 void quick_sort_lomuto(int *array, size_t size, ssize_t left, ssize_t right)
 {
 	int swap;
-	ssize_t left_clone = left;
+	ssize_t left_clone = left - 1;
 	quick_sort_struct utils;
 
 	utils.array = array;
@@ -41,16 +41,16 @@ void quick_sort_lomuto(int *array, size_t size, ssize_t left, ssize_t right)
 	{
 		find_and_move_lesser_numbers(&utils);
 
-		if (*utils.pivot_idx != right)
+		if (*utils.pivot_idx + 1 != right)
 		{
-			swap = array[*utils.pivot_idx];
-			array[*utils.pivot_idx] = array[right];
+			swap = array[*utils.pivot_idx + 1];
+			array[*utils.pivot_idx + 1] = array[right];
 			array[right] = swap;
 			print_array(array, size);
 		}
 
-		quick_sort_lomuto(array, size, left, *utils.pivot_idx - 1);
-		quick_sort_lomuto(array, size, *utils.pivot_idx + 1, right);
+		quick_sort_lomuto(array, size, left, *utils.pivot_idx);
+		quick_sort_lomuto(array, size, *utils.pivot_idx + 2, right);
 	}
 }
 
@@ -66,10 +66,10 @@ void find_and_move_lesser_numbers(quick_sort_struct *utils)
 
 	while (i < utils->right)
 	{
-		if (utils->array[i] < utils->pivot)
+		if (utils->array[i] <= utils->pivot)
 		{
-			swap_numbers(utils, i);
 			(*utils->pivot_idx)++;
+			swap_numbers(utils, i);
 		}
 		i++;
 	}
