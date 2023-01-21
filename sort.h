@@ -47,6 +47,29 @@ typedef struct quick_sort_util
 	int pivot;
 } quick_sort_struct;
 
+/**
+ * struct shell_sort - Utility structure for values used during shell sort
+ * @array: Array of ints
+ * @curr_idx: The current index being analyzed
+ * @high_idx: The higher index being analyzed
+ * @i: A utility counter
+ * @idx: A utility index used during checking is the array is sorted
+ * @insert: Index at while number to be inserted is during insertion sort
+ * @interval: Interval between higher index and lower index in shell sort
+ * @size: Size of the array
+ */
+typedef struct shell_sort
+{
+	int *array;
+	size_t curr_idx;
+	size_t high_idx;
+	size_t i;
+	size_t idx;
+	size_t insert;
+	size_t interval;
+	size_t size;
+} shell_sort_struct;
+
 void print_array(const int *array, size_t size);
 void print_list(const listint_t *list);
 void bubble_sort(int *array, size_t size);
@@ -57,6 +80,11 @@ void quick_sort(int *array, size_t size);
 void quick_sort_lomuto(int *array, size_t size, ssize_t left, ssize_t right);
 void find_and_move_lesser_numbers(quick_sort_struct *utils);
 void swap_numbers(quick_sort_struct *utils, ssize_t i);
+void shell_sort(int *array, size_t size);
+void compare_and_swap(shell_sort_struct *utils);
+int is_sorted(shell_sort_struct *utils);
+void do_insertion_sort(shell_sort_struct *utils);
+void check_and_swap(shell_sort_struct *utils);
 
 /* void sort_list_of_two_and_print(listint_t **list); */
 /* void sort_two_only(listint_t **list); */
