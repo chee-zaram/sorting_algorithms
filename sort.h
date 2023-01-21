@@ -91,6 +91,11 @@ int is_sorted(shell_sort_struct *utils);
 void do_insertion_sort(shell_sort_struct *utils);
 void check_and_swap(shell_sort_struct *utils);
 
+void cocktail_sort_list(listint_t **list);
+listint_t *bubble_forward(listint_t **list, int *sorted);
+void bubble_backward(listint_t **list, listint_t *tail_ref, int *sorted);
+void swap_list_of_two(listint_t **list);
+
 /* void sort_list_of_two_and_print(listint_t **list); */
 /* void sort_two_only(listint_t **list); */
 /* int sort_for_last_node(listint_t *node_to_insert); */
