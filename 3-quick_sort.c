@@ -26,31 +26,31 @@ void quick_sort(int *array, size_t size)
 void quick_sort_lomuto(int *array, size_t size, ssize_t left, ssize_t right)
 {
 	int swap;
-	ssize_t left_clone = left - 1;
-	quick_sort_struct utils;
+	quick_sort_struct sort = {NULL, 0, 0, 0, 0, 0, 0};
+	quick_sort_struct *utils = &sort;
 
-	utils.array = array;
-	utils.curr_int_idx = left;
-	utils.left = left;
-	utils.right = right;
-	utils.pivot_idx = &left_clone;
-	utils.size = size;
-	utils.pivot = array[right];
+	utils->array = array;
+	utils->curr_int_idx = left;
+	utils->left = left;
+	utils->right = right;
+	utils->pivot_idx = left - 1;
+	utils->size = size;
+	utils->pivot = array[right];
 
-	if (left < right)
+	if (utils->left < utils->right)
 	{
-		find_and_move_lesser_numbers(&utils);
+		find_and_move_lesser_numbers(utils);
 
-		if (*utils.pivot_idx + 1 != right)
+		if (utils->pivot_idx + 1 != utils->right)
 		{
-			swap = array[*utils.pivot_idx + 1];
-			array[*utils.pivot_idx + 1] = array[right];
-			array[right] = swap;
-			print_array(array, size);
+			swap = utils->array[utils->pivot_idx + 1];
+			utils->array[utils->pivot_idx + 1] = utils->array[right];
+			utils->array[right] = swap;
+			print_array(utils->array, utils->size);
 		}
 
-		quick_sort_lomuto(array, size, left, *utils.pivot_idx);
-		quick_sort_lomuto(array, size, *utils.pivot_idx + 2, right);
+		quick_sort_lomuto(array, utils->size, utils->left, utils->pivot_idx);
+		quick_sort_lomuto(array, utils->size, utils->pivot_idx + 2, utils->right);
 	}
 }
 
@@ -62,33 +62,30 @@ void quick_sort_lomuto(int *array, size_t size, ssize_t left, ssize_t right)
  */
 void find_and_move_lesser_numbers(quick_sort_struct *utils)
 {
-	ssize_t i = utils->curr_int_idx;
-
-	while (i < utils->right)
+	while (utils->curr_int_idx < utils->right)
 	{
-		if (utils->array[i] <= utils->pivot)
+		if (utils->array[utils->curr_int_idx] <= utils->pivot)
 		{
-			(*utils->pivot_idx)++;
-			swap_numbers(utils, i);
+			utils->pivot_idx++;
+			swap_numbers(utils);
 		}
-		i++;
+		utils->curr_int_idx++;
 	}
 }
 
 /**
  * swap_numbers - Swaps two numbers in the array of integers
  * @utils: Address of struct containing necessery data to be used for swapping
- * @i: Current index of the number to be swapped in the array
  */
-void swap_numbers(quick_sort_struct *utils, ssize_t i)
+void swap_numbers(quick_sort_struct *utils)
 {
 	int swap;
 
-	if (i != *utils->pivot_idx)
+	if (utils->curr_int_idx != utils->pivot_idx)
 	{
-		swap = utils->array[*utils->pivot_idx];
-		utils->array[*utils->pivot_idx] = utils->array[i];
-		utils->array[i] = swap;
+		swap = utils->array[utils->pivot_idx];
+		utils->array[utils->pivot_idx] = utils->array[utils->curr_int_idx];
+		utils->array[utils->curr_int_idx] = swap;
 		print_array(utils->array, utils->size);
 	}
 }

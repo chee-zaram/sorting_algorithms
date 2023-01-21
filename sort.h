@@ -42,7 +42,7 @@ typedef struct quick_sort_util
 	ssize_t curr_int_idx;
 	ssize_t left;
 	ssize_t right;
-	ssize_t *pivot_idx;
+	ssize_t pivot_idx;
 	size_t size;
 	int pivot;
 } quick_sort_struct;
@@ -72,14 +72,19 @@ typedef struct shell_sort
 
 void print_array(const int *array, size_t size);
 void print_list(const listint_t *list);
+
 void bubble_sort(int *array, size_t size);
+
 void insertion_sort_list(listint_t **list);
 void insertion_sort(listint_t **list, listint_t *current, listint_t *cur_prev);
+
 void selection_sort(int *array, size_t size);
+
 void quick_sort(int *array, size_t size);
 void quick_sort_lomuto(int *array, size_t size, ssize_t left, ssize_t right);
 void find_and_move_lesser_numbers(quick_sort_struct *utils);
-void swap_numbers(quick_sort_struct *utils, ssize_t i);
+void swap_numbers(quick_sort_struct *utils);
+
 void shell_sort(int *array, size_t size);
 void compare_and_swap(shell_sort_struct *utils);
 int is_sorted(shell_sort_struct *utils);
