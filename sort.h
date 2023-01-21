@@ -96,6 +96,10 @@ listint_t *bubble_forward(listint_t **list, int *sorted);
 void bubble_backward(listint_t **list, listint_t *tail_ref, int *sorted);
 void swap_list_of_two(listint_t **list);
 
+void counting_sort(int *array, size_t size);
+int find_max(int *array, size_t size);
+void sort(int *array, int *count, int *sorted_array, size_t size);
+
 /* void sort_list_of_two_and_print(listint_t **list); */
 /* void sort_two_only(listint_t **list); */
 /* int sort_for_last_node(listint_t *node_to_insert); */
