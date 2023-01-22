@@ -100,6 +100,11 @@ void counting_sort(int *array, size_t size);
 int find_max(int *array, size_t size);
 void sort(int *array, int *count, int *sorted_array, size_t size);
 
+void merge_sort(int *array, size_t size);
+void copy_array(int *array, int *temp_array, size_t size);
+void split(int *temp_array, size_t beg, size_t end, int *array);
+void merge(int *array, size_t beg, size_t mid, size_t end, int *temp_array);
+
 /* void sort_list_of_two_and_print(listint_t **list); */
 /* void sort_two_only(listint_t **list); */
 /* int sort_for_last_node(listint_t *node_to_insert); */
