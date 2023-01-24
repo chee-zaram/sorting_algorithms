@@ -4,11 +4,14 @@
 #define FALSE	0
 #define TRUE	1
 
-#define CHECK_FOR_LAST_NODE	\
-(!node_to_insert->next && node_to_insert->prev && node_to_insert->prev->prev)
+#define VALID_RIGHT_CHILD_GREATER_THAN_PARENT	\
+(parent >= 0 && right_child < work_size && array[parent] < array[right_child])
 
-#define CHECK_FOR_REGULAR	\
-(node_to_insert->prev && node_to_insert->prev->n > node_to_insert->n)
+#define VALID_LEFT_CHILD_GREATER_THAN_PARENT	\
+(parent >= 0 && array[parent] < array[left_child])
+
+#define ROOT_OR_FIRST_CHILD_OF_ROOT_AND_SWAPPED	\
+((prev_parent == 1 || prev_parent == 0) && prev_parent != parent)
 
 #include <stdio.h>
 
@@ -105,9 +108,9 @@ void copy_array(int *array, int *temp_array, size_t size);
 void split(int *temp_array, size_t beg, size_t end, int *array);
 void merge(int *array, size_t beg, size_t mid, size_t end, int *temp_array);
 
-/* void sort_list_of_two_and_print(listint_t **list); */
-/* void sort_two_only(listint_t **list); */
-/* int sort_for_last_node(listint_t *node_to_insert); */
-/* void sort_for_regular(listint_t **list, listint_t *node_to_insert); */
+void heap_sort(int *array, size_t size);
+void heapify(int *array, size_t or_size, size_t work_size, int parent);
+void swap(int *array, size_t idx_1, size_t idx_2);
+void extract_and_insert(int *array, size_t or_size, size_t max_idx);
 
 #endif /* for _SORT_H_ */
