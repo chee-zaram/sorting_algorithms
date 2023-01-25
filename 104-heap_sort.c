@@ -1,7 +1,7 @@
 #include "sort.h"
 
 /**
- * swap - Swaps the integers are two indices
+ * swap - Swaps the integers at two indices
  * @array: Array of integers
  * @idx_1: Index of first integer
  * @idx_2: Index of second integer
@@ -40,14 +40,14 @@ void heapify(int *array, size_t or_size, size_t work_size, int parent)
 		print_array(array, or_size);
 	}
 
-	if (ROOT_OR_FIRST_CHILD_OF_ROOT_AND_SWAPPED)
+	if (VALID_PREV_PARENT_AND_SWAPPED)
 		heapify(array, or_size, work_size, ((work_size - 1) - 1) / 2);
-	else if (prev_parent >= 0)
+	else if (prev_parent > 0)
 		heapify(array, or_size, work_size, prev_parent - 1);
 }
 
 /**
- * extract_and_insert - Extracts the max integer and inserts at the last index
+ * extract_and_insert - Extracts max integer and inserts at last working index
  * @array: The array of integers
  * @or_size: Original size of the array
  * @max_idx: The highest index in the array
@@ -62,10 +62,13 @@ void extract_and_insert(int *array, size_t or_size, size_t max_idx)
 	max_idx = max_idx - 1;
 	last_parent = ((max_idx - 1) - 1) / 2;
 
+	/* To avoid swapping with itself */
 	if (max_idx != 0)
 		swap(array, 0, max_idx), print_array(array, or_size);
 
+	/* restore the heap data structure for them rest of the unsorted array */
 	heapify(array, or_size, max_idx, last_parent);
+	/* sort again */
 	extract_and_insert(array, or_size, max_idx);
 }
 

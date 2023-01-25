@@ -10,8 +10,8 @@
 #define VALID_LEFT_CHILD_GREATER_THAN_PARENT	\
 (parent >= 0 && array[parent] < array[left_child])
 
-#define ROOT_OR_FIRST_CHILD_OF_ROOT_AND_SWAPPED	\
-((prev_parent == 1 || prev_parent == 0) && prev_parent != parent)
+#define VALID_PREV_PARENT_AND_SWAPPED	\
+(prev_parent >= 0 && prev_parent != parent)
 
 #include <stdio.h>
 
