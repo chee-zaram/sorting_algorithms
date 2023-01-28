@@ -1,17 +1,17 @@
 #ifndef _SORT_H_
 #define _SORT_H_
 
-#define FALSE	0
-#define TRUE	1
+#define FALSE 0
+#define TRUE  1
 
-#define VALID_RIGHT_CHILD_GREATER_THAN_PARENT	\
-(parent >= 0 && right_child < work_size && array[parent] < array[right_child])
+#define VALID_RIGHT_CHILD_GREATER_THAN_PARENT \
+	(parent >= 0 && right_child < work_size && array[parent] < array[right_child])
 
-#define VALID_LEFT_CHILD_GREATER_THAN_PARENT	\
-(parent >= 0 && array[parent] < array[left_child])
+#define VALID_LEFT_CHILD_GREATER_THAN_PARENT \
+	(parent >= 0 && array[parent] < array[left_child])
 
-#define VALID_PREV_PARENT_AND_SWAPPED	\
-(prev_parent >= 0 && prev_parent != parent)
+#define VALID_PREV_PARENT_AND_SWAPPED \
+	(prev_parent >= 0 && prev_parent != parent)
 
 #include <stdio.h>
 
@@ -24,7 +24,7 @@
  */
 typedef struct listint_s
 {
-	const int n;
+	const int	  n;
 	struct listint_s *prev;
 	struct listint_s *next;
 } listint_t;
@@ -41,13 +41,13 @@ typedef struct listint_s
  */
 typedef struct quick_sort_util
 {
-	int *array;
+	int    *array;
 	ssize_t curr_int_idx;
 	ssize_t left;
 	ssize_t right;
 	ssize_t pivot_idx;
-	size_t size;
-	int pivot;
+	size_t	size;
+	int	pivot;
 } quick_sort_struct;
 
 /**
@@ -63,7 +63,7 @@ typedef struct quick_sort_util
  */
 typedef struct shell_sort
 {
-	int *array;
+	int   *array;
 	size_t curr_idx;
 	size_t high_idx;
 	size_t i;
@@ -90,17 +90,17 @@ void swap_numbers(quick_sort_struct *utils);
 
 void shell_sort(int *array, size_t size);
 void compare_and_swap(shell_sort_struct *utils);
-int is_sorted(shell_sort_struct *utils);
+int  is_sorted(shell_sort_struct *utils);
 void do_insertion_sort(shell_sort_struct *utils);
 void check_and_swap(shell_sort_struct *utils);
 
-void cocktail_sort_list(listint_t **list);
+void	   cocktail_sort_list(listint_t **list);
 listint_t *bubble_forward(listint_t **list, int *sorted);
-void bubble_backward(listint_t **list, listint_t *tail_ref, int *sorted);
-void swap_list_of_two(listint_t **list);
+void	   bubble_backward(listint_t **list, listint_t *tail_ref, int *sorted);
+void	   swap_list_of_two(listint_t **list);
 
 void counting_sort(int *array, size_t size);
-int find_max(int *array, size_t size);
+int  find_max(int *array, size_t size);
 void sort(int *array, int *count, int *sorted_array, size_t size);
 
 void merge_sort(int *array, size_t size);
