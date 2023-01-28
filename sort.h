@@ -42,12 +42,12 @@ typedef struct listint_s
 typedef struct quick_sort_util
 {
 	int    *array;
+	int	pivot;
 	ssize_t curr_int_idx;
 	ssize_t left;
 	ssize_t right;
 	ssize_t pivot_idx;
 	size_t	size;
-	int	pivot;
 } quick_sort_struct;
 
 /**
@@ -112,5 +112,10 @@ void heap_sort(int *array, size_t size);
 void heapify(int *array, size_t or_size, size_t work_size, int parent);
 void swap(int *array, size_t idx_1, size_t idx_2);
 void extract_and_insert(int *array, size_t or_size, size_t max_idx);
+
+void  radix_sort(int *array, size_t size);
+int **create_queue(void);
+int   allocate_to_each_queue(int **queues, size_t size);
+void  lsd_sort(int **queues, int *array, size_t size, int divisor);
 
 #endif /* for _SORT_H_ */
